@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Weather API</title>
+{% endblock %}
+
+
+{% block body %}
+</br></br></br></br></br>
+<div class="content">
+	<h1 style="text-align: center">Weather in your town</h1>
+
+	<form method="post" action="/">
+		<center>
+        	<label for="city">City:</label>
+			<input type="text" id="city" name="city" required>
+        	<button type="submit">Search</button>
+		</center>
+    </form>
+
+	{% if weather_data %}
+	<br/><br/><br/><br/>
+	<h3 style="text-align: center">This is the weather data for 3 days based on your location</h3>
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>City</th>
+			<th>Max Temperature</th>
+			<th>Min Temperature</th>
+			<th>Total Precipitation</th>
+			<th>Humidity</th>
+			<th>Sunrise hour</th>
+			<th>Sunset hour</th>
+		</tr>
+		{% for day in weather_data %}
+			<tr>
+				<td>{{ day.date }}</td>
+				<td>{{ day.city }}</td>
+				<td>{{ day.max_temp }}</td>
+				<td>{{ day.min_temp }}</td>
+				<td>{{ day.total_precipitation }}</td>
+				<td>{{ day.humidity }}</td>
+				<td>{{ day.sunrise_hour }}</td>
+				<td>{{ day.sunset_hour }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	{% endif %}
+	</br>
+
+</div>
+{% endblock %}
