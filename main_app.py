@@ -28,7 +28,8 @@ def index():
     if request.method == 'POST':
         city = request.form['city']
         weather_data = take_weather_data(city)
-        save_to_db(city, weather_data)
+        if weather_data is not None:
+            save_to_db(city, weather_data)
 
     weather_data = WeatherCheck.query.filter_by(city=city).all()
 
